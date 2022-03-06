@@ -1,0 +1,79 @@
+from Service.{{oras}}_service import {{Oras}}Service
+from Service.{{ '{' }}{{ '{' }}copil{{ '}' }}{{ '}' }}_service import {{ '{' }}{{ '{' }}Copil{{ '}' }}{{ '}' }}Service
+
+
+class Console:
+    def __init__(self, {{oras}}Service : {{Oras}}Service, {{ '{' }}{{ '{' }}copil{{ '}' }}{{ '}' }}Service: {{ '{' }}{{ '{' }}Copil{{ '}' }}{{ '}' }}Service):
+        self.__{{oras}}Service = {{oras}}Service
+        self.__{{ '{' }}{{ '{' }}copil{{ '}' }}{{ '}' }}Service = {{ '{' }}{{ '{' }}copil{{ '}' }}{{ '}' }}Service
+
+    def runMenu(self):
+        while True:
+            print("1. Adaugare {{oras}} ")
+            print("2. Adaugare {{ '{' }}{{ '{' }}copil{{ '}' }}{{ '}' }}")
+            print("3. ")
+            print("4. ")
+            print("5. ")
+            print("x. Iesire ")
+            print("{{oras[0]}}. Afisare {{plural}}")
+            print("{{ '{' }}{{ '{' }}copil[0]{{ '}' }}{{ '}' }}. Afisare {{ '{' }}{{ '{' }}plural{{ '}' }}{{ '}' }}")
+            optiune = input("Selectati optiunea: ")
+
+            if optiune == '1':
+                self.adaugare{{Oras}}()
+            elif optiune == '2':
+                self.adaugare{{ '{' }}{{ '{' }}Copil{{ '}' }}{{ '}' }}()
+            elif optiune == '3':
+                pass
+            elif optiune == '4':
+                pass
+            elif optiune == '5':
+                pass
+            elif optiune == '{{oras[0]}}':
+                self.afisare{{plural.capitalize()}}()
+            elif optiune == '{{ '{' }}{{ '{' }}copil[0]{{ '}' }}{{ '}' }}':
+                self.afisare{{ '{' }}{{ '{' }}plural.capitalize(){{ '}' }}{{ '}' }}()
+            elif optiune == 'x':
+                break
+            else:
+                print("Optiune invalida!")
+
+    def adaugare{{Oras}}(self):
+        try:
+			{% for param in paramName -%}
+		{{param[0]}}{{Oras}} = input("Dati {{param[0]}} {{oras}}: ")
+			{% endfor %}
+            self.__{{oras}}Service.adaugare({{paramName[0][0]}}{{Oras}}
+{%- for param in paramName[1:] -%}
+	,{{space}}{{param[0]}}{{Oras}}
+{%- endfor %})
+        except KeyError as ke:
+            print(ke)
+        except ValueError as ve:
+            print(ve)
+
+    def adaugare{{ '{' }}{{ '{' }}Copil{{ '}' }}{{ '}' }}(self):
+        try:
+			{{ '{' }}% for param in paramName -%{{ '}' }}
+		{{ '{' }}{{ '{' }}param[0]{{ '}' }}{{ '}' }}{{ '{' }}{{ '{' }}Copil{{ '}' }}{{ '}' }} = input("Dati {{ '{' }}{{ '{' }}param[0]{{ '}' }}{{ '}' }} {{ '{' }}{{ '{' }}copil{{ '}' }}{{ '}' }}: ")
+			{{ '{' }}% endfor %{{ '}' }}
+            self.__{{ '{' }}{{ '{' }}copil{{ '}' }}{{ '}' }}Service.adaugare({{ '{' }}{{ '{' }}paramName[0][0]{{ '}' }}{{ '}' }}{{ '{' }}{{ '{' }}Copil{{ '}' }}{{ '}' }}
+{{ '{' }}%- for param in paramName[1:] -%{{ '}' }}
+	,{{space}}{{ '{' }}{{ '{' }}param[0]{{ '}' }}{{ '}' }}{{ '{' }}{{ '{' }}Copil{{ '}' }}{{ '}' }}
+{{ '{' }}%- endfor %{{ '}' }})
+        except KeyError as ke:
+            print(ke)
+        except ValueError as ve:
+            print(ve)
+
+    def afisare{{plural[0].capitalize()}}{{plural[1:]}}(self):
+        {{plural}} = self.__{{oras}}Service.getAll()
+        for {{oras}} in {{plural}}:
+            print({{oras}})
+
+    def afisare{{ '{' }}{{ '{' }}plural[0].capitalize(){{ '}' }}{{ '}' }}{{ '{' }}{{ '{' }}plural[1:]{{ '}' }}{{ '}' }}(self):
+        {{ '{' }}{{ '{' }}plural{{ '}' }}{{ '}' }} = self.__{{ '{' }}{{ '{' }}copil{{ '}' }}{{ '}' }}Service.getAll()
+        for {{ '{' }}{{ '{' }}copil{{ '}' }}{{ '}' }} in {{ '{' }}{{ '{' }}plural{{ '}' }}{{ '}' }}:
+            print({{ '{' }}{{ '{' }}copil{{ '}' }}{{ '}' }})
+
+

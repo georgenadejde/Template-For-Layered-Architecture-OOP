@@ -1,0 +1,33 @@
+from Domain.{{oras}} import {{Oras}}
+from Domain.{{oras}}_validator import {{Oras}}Validator
+from Repository.file_repository import FileRepository
+
+
+class {{Oras}}Service:
+    def __init__(self, {{oras}}Repository: FileRepository, {{oras}}Validator: {{Oras}}Validator):
+        self.__{{oras}}Repository = {{oras}}Repository
+        self.__{{oras}}Validator = {{oras}}Validator
+
+    def getAll(self):
+        '''
+        Returneaza  {{plural}}
+        :return:
+        '''
+        return self.__{{oras}}Repository.getAll()
+
+    def adaugare(self, {{paramStr}}):
+        '''
+        Adauga {% if gen == 'f'%}o{%-else-%}un{%-endif%} {{oras}}
+		{% for param in paramName -%}
+			:param {{param[0]}}{{Oras}}: {{param[0]}} {{oras}}
+		{% endfor -%}
+        :return:
+        '''
+
+        {{oras}} = {{Oras}}({{paramStr}})
+
+        if self.__{{oras}}Repository.getById({{paramName[0][0]}}{{Oras}}):
+            raise KeyError(f"Exista deja {% if gen == 'f'%}o{%-else-%}un{%-endif%} {{oras}} cu id-ul { {{paramName[0][0]}}{{Oras}} }")
+
+        self.__{{oras}}Validator.valideaza({{oras}})
+        self.__{{oras}}Repository.adaugare({{oras}})

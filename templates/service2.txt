@@ -1,0 +1,37 @@
+import jsonpickle
+
+from Domain.{{copil}} import {{Copil}}
+from Domain.{{copil}}_validator import {{Copil}}Validator
+from Repository.file_repository import FileRepository
+
+
+class {{Copil}}Service:
+    def __init__(self, {{copil}}Repository: FileRepository, {{oras}}Repository: FileRepository, {{copil}}Validator: {{copil.capitalize()}}Validator):
+        self.__{{copil}}Repository = {{copil}}Repository
+	    self.__{{oras}}Repository = {{oras}}Repository
+        self.__{{copil}}Validator = {{copil}}Validator
+
+    def getAll(self):
+        '''
+        Returneaza  {{plural}}
+        :return:
+        '''
+        return self.__{{copil}}Repository.getAll()
+
+    def adaugare(self, {{paramStr}}):
+        '''
+        Adauga {% if gen == 'f'%}o{%-else-%}un{%-endif%} {{copil}}
+		{% for param in paramName -%}
+			:param {{param[0]}}{{Copil}}: {{param[0]}} {{copil}}
+		{% endfor -%}
+        :return:
+        '''	         
+
+
+        {{copil}} = {{Copil}}({{paramStr}})
+
+        if self.__{{copil}}Repository.getById({{paramName[0][0]}}{{Copil}}):
+            raise KeyError(f"Exista deja {% if gen == 'f'%}o{%-else-%}un{%-endif%} {{copil}} cu id-ul { {{paramName[0][0]}}{{Copil}} }")
+
+        self.__{{copil}}Validator.valideaza({{copil}})
+        self.__{{copil}}Repository.adaugare({{copil}})

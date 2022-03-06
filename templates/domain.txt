@@ -1,0 +1,33 @@
+from Domain.entitate import Entitate
+
+
+class {{Oras}}(Entitate):
+    '''
+    creeaza entitatea {{Oras}}
+    '''
+
+    def __init__(self, {{ paramStr }}):
+        super().__init__({{ paramName[0][0] }}{{ Oras }})
+{%- for param in paramName[1:] %}
+		self.__{{param[0]}}{{ Oras }} = {{param[0]}}{{ Oras }}
+{%- endfor %}
+
+    def __str__(self):
+		return f"{{paramName[0][0]}} {{ oras }}: {self.idEntitate}{{space}}
+{%- for param in paramName[1:] -%} 
+	,{{space}}{{param[0]}} {{ oras }}: {self.__{{ param[0] }}{{ Oras }}} 
+{%- endfor %}"
+
+    @property
+    def {{paramName[0][0]}}{{Oras}}(self):
+        return self.idEntitate
+
+{% for param in paramName[1:] %}	
+	@property
+    def {{param[0]}}{{Oras}}(self):
+        return self.__{{param[0]}}{{Oras}}
+
+    @{{param[0]}}{{Oras}}.setter
+    def {{param[0]}}{{Oras}}(self, value):
+        self.__{{param[0]}}{{Oras}} = value
+{% endfor %}

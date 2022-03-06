@@ -1,0 +1,48 @@
+from Domain.{{oras}}_validator import {{Oras}}Validator
+from Repository.file_repository import FileRepository
+from Service.{{oras}}_service import {{Oras}}Service
+from Tests.utils import clear_file
+
+
+def testAdaugare{{Oras}}():
+    clear_file("{{oras}}Test.txt")
+    {{oras}}Repository = FileRepository("{{oras}}Test.txt")
+    {{oras}}Validator = {{Oras}}Validator()
+    service = {{Oras}}Service({{oras}}Repository, {{oras}}Validator) 
+    {% set values = [] -%}
+    service.adaugare('1'
+    {%- for param in paramName[1:] -%}
+        {% if param[1] == 'str0' -%}
+        , "{{param[0]}}"
+	{%- set values = values.append(param[0])-%}
+        {%- elif param[1] == 'int+' -%}
+        , 10
+	{%- set values = values.append(10)-%}
+        {%- elif param[1] == 'bool' -%}
+        , True
+	{%- set values = values.append(1) -%}
+        {%- else -%}
+       	, "{{param[1][0]}}"
+	{%- set values = values.append(param[1][0])-%}
+	{% endif %}
+    {%- endfor %})
+    assert len(service.getAll()) == 1
+    added = {{oras}}Repository.getById('1')
+    assert added is not None
+    assert added.idEntitate == '1'
+{%- for i in range (1, paramName|length) %}
+	assert added.{{paramName[i][0]}}{{Oras}} == 
+	{%- if values[i-1] == 1 %} True {% elif values[i-1] == 10 %} {{values[i-1]}}{%- else %} "{{ values[i-1] }}"{%-endif-%}
+{%- endfor %}
+
+    try:
+        service.adaugare('1'
+	{%- for i in range (1, paramName|length) -%}
+	,{% if values[i-1] == 1 %} True {% elif values[i-1] == 10 %} {{values[i-1]}}{%- else %} "{{ values[i-1] }}"{%-endif-%}
+	{%- endfor %})
+        assert False
+    except KeyError:
+        assert True
+    except Exception:
+        assert False
+

@@ -1,0 +1,23 @@
+from Tests.run_all import runAllTests
+from Service.{{oras}}_service import {{Oras}}Service
+from Service.{{ '{' }}{{ '{' }}copil{{ '}' }}{{ '}' }}_service import {{ '{' }}{{ '{' }}Copil{{ '}' }}{{ '}' }}Service
+from Repository.file_repository import FileRepository
+from UserInterface.console import Console
+from Domain.{{oras}}_validator import {{Oras}}Validator
+from Domain.{{ '{' }}{{ '{' }}copil{{ '}' }}{{ '}' }}_validator import {{ '{' }}{{ '{' }}Copil{{ '}' }}{{ '}' }}Validator
+
+def main():
+    {{oras}}Validator = {{Oras}}Validator()
+    {{ '{' }}{{ '{' }}copil{{ '}' }}{{ '}' }}Validator = {{ '{' }}{{ '{' }}Copil{{ '}' }}{{ '}' }}Validator()
+
+    {{oras}}Repository = FileRepository("{{plural}}.txt")
+    {{ '{' }}{{ '{' }}copil{{ '}' }}{{ '}' }}Repository = FileRepository("{{ '{' }}{{ '{' }}plural{{ '}' }}{{ '}' }}.txt")
+
+    {{oras}}Service = {{Oras}}Service({{oras}}Repository, {{oras}}Validator)
+    {{ '{' }}{{ '{' }}copil{{ '}' }}{{ '}' }}Service = {{ '{' }}{{ '{' }}Copil{{ '}' }}{{ '}' }}Service({{ '{' }}{{ '{' }}copil{{ '}' }}{{ '}' }}Repository, {{oras}}Repository, {{ '{' }}{{ '{' }}copil{{ '}' }}{{ '}' }}Validator)
+
+    ui = Console({{oras}}Service, {{ '{' }}{{ '{' }}copil{{ '}' }}{{ '}' }}Service)
+    ui.runMenu()
+
+runAllTests()
+main()

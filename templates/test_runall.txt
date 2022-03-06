@@ -1,0 +1,12 @@
+from Tests.test_{{oras}}_service import testAdaugare{{Oras}}
+from Tests.test_{{copil}}_service import testAdaugare{{Copil}}
+
+
+def runAllTests():
+    
+    # domain tests go here
+
+    testAdaugare{{Oras}}()
+    testAdaugare{{Copil}}()
+    
+    # repo tests go here

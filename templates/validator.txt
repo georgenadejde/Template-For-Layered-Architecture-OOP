@@ -1,0 +1,28 @@
+from Domain.{{oras}} import {{Oras}}
+
+
+class {{Oras}}Validator:
+    def valideaza(self, {{oras}}: {{Oras}}):
+        erori = []
+    {% for param in paramName %}
+        {% if param[1] == 'str0' -%}
+        if {{oras}}.{{param[0]}}{{Oras}} == "":
+            erori.append("{{param[0].capitalize()}} {{oras}} nu poate fi nul!") 
+        {%- elif param[1] == 'int+' -%}
+        if {{oras}}.{{param[0]}}{{Oras}} <= 0:
+            erori.append("{{param[0].capitalize()}} {{oras}} este un intreg strict pozitiv!")
+        {%- elif param[1] == 'bool' -%}
+        if {{oras}}.{{param[0]}}{{Oras}} not in ['True', 'true', 'false', 'False']:
+            erori.append("'{{param[0].capitalize()}}' poate fi doar 'True' sau 'False'! ")
+        {%- else -%}
+        if {{oras}}.{{param[0]}}{{Oras}} not in {{param[1]}}:
+            erori.append("'{{param[0].capitalize()}}' poate fi doar '{{param[1][0]}}'
+    {%- for i in range(1,  param[1]|length  ) -%}
+    {%- if i == param[1]|length-1 -%}{{space}} sau '{{param[1][i]}}'
+    {%- elif i == param[1]|length-2 -%} '{{param[1][i]}}'
+    {%- else -%} '{{param[1][i]}}' ,{{space}}{{par}} {%- endif -%}
+	{%- endfor -%}{{space}}!")
+		{% endif %}
+	{%- endfor %}
+        if len(erori) > 0:
+            raise ValueError(erori)
