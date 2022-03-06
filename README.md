@@ -1,4 +1,4 @@
-# Template-For-OOP-Layered-Architecture
+# Template For OOP Layered Architecture
 Jinja2 Template For Creating The Layered Architecture In OOP Using Python
 
 - Creates the files necessary to start an OOP project using two entities, including comments, validators and tests.
